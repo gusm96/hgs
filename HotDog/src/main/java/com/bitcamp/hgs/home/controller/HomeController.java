@@ -49,6 +49,7 @@ public class HomeController {
 	}
 	
 	
+	
 	@GetMapping("/home")
 	public String home(Model model, HttpSession session) {
 		Logger logger = (Logger)session.getAttribute("logger");
@@ -95,6 +96,12 @@ public class HomeController {
 	@GetMapping("/joinType")
 	public String joinType() {
 		return "home/joinType";
+	}
+	
+	// 관리자 로그인 페이지
+	@GetMapping("/login/admin")
+	public String adminLogin() {
+		return "admin/login";
 	}
 
 

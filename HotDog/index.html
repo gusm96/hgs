@@ -45,8 +45,20 @@
         <form method="post">
           <div class="row">
             <div class="col-md-2">제목</div>
-            <div class="col-md-10">
+            <div class="col-md-8" style="padding: 0">
               <input type="text" name="title" required style="width: 100%" />
+            </div>
+            <div class="col-md-2" style="padding: 0">
+              <select
+                name="admin_board_list_idx"
+                id="admin_board_list"
+                class="form-select"
+                aria-label="Default select example"
+              >
+                <option selected>게시글 유행을 선택하세요.</option>
+                <option value="1">이벤트</option>
+                <option value="2">공지사항</option>
+              </select>
             </div>
           </div>
           <textarea id="summernote" name="editordata"></textarea>

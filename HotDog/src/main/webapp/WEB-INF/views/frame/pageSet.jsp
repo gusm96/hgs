@@ -8,7 +8,7 @@
 <!-- css -->
 
 	<!-- default -->
-	<link rel="stylesheet" href="css/default.css" />
+	<link rel="stylesheet" href="/css/default.css" />
 	
 	<!-- Free icon https://fontawesome.com/ -->
 <!-- 	<script src="https://kit.fontawesome.com/70b9626072.js" crossorigin="anonymous"></script> -->

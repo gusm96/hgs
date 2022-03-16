@@ -14,4 +14,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into admin_boards (admin_board_list_idx, admin_idx, title, content) values(#{adminBoardListIdx}, #{adminIdx}, #{title}, #{content})
 </insert>
 
+<!-- BoardList -->
+<select id="selectEventBoardList" resultType="com.bitcamp.hgs.admin.domain.BoardList">
+	select * from admin_boards where admin_board_list_idx = #{i}
+</select>
+
 </mapper>

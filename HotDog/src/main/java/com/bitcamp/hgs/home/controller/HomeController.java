@@ -112,7 +112,13 @@ public class HomeController {
 		
 		return "admin/login";
 	}
-
+	
+	// 관리자 로그아웃
+	@GetMapping("/logout/admin")
+	public String adminLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 	
 }
 

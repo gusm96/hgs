@@ -1,5 +1,7 @@
 package com.bitcamp.hgs.admin.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.hgs.admin.dao.AdminDao;
 import com.bitcamp.hgs.admin.domain.AdminBoardRequest;
 import com.bitcamp.hgs.admin.domain.AdminLoginInfo;
+import com.bitcamp.hgs.admin.domain.BoardList;
 
 @Service
 public class AdminService {
@@ -18,6 +21,7 @@ public class AdminService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
+	// 게시물 작성
 	public int writeBoard(AdminBoardRequest boardReq, HttpSession session) {
 		int resultCnt = 0;
 		System.out.println(boardReq);
@@ -30,5 +34,18 @@ public class AdminService {
 		resultCnt = dao.writeBoard(boardReq);
 		
 		return resultCnt;
+	}
+	
+	// 게시물 리스트
+	
+	public List<BoardList> getBoardList(int i){
+		
+		List<BoardList> list = null;
+		
+		dao = template.getMapper(AdminDao.class);
+		
+		list = dao.selectEventBoardList(i);
+		
+		return list;
 	}
 }

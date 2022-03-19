@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bitcamp.hgs.admin.domain.Admin;
 import com.bitcamp.hgs.admin.domain.AdminBoardRequest;
+import com.bitcamp.hgs.admin.domain.BoardDetail;
 import com.bitcamp.hgs.admin.domain.BoardList;
 
 public interface AdminDao {
@@ -13,5 +14,7 @@ public interface AdminDao {
 	public int writeBoard(AdminBoardRequest boardReq);
 
 	public List<BoardList> selectEventBoardList(int i);
+
+	public BoardDetail selectBoard(int idx);
 	
 }

@@ -37,4 +37,10 @@ public class AdminBoardController {
 		}
 		return "adminBoard/list";
 	}
+	@GetMapping("/detail/{idx}")
+	public String getBoardDetail(@PathVariable("idx") int idx, Model model) {
+		model.addAttribute("board", service.getBoardDetail(idx));
+		return "adminBoard/detail";
+	}
+	
 }

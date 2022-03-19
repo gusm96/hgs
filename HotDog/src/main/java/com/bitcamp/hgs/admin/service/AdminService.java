@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.hgs.admin.dao.AdminDao;
 import com.bitcamp.hgs.admin.domain.AdminBoardRequest;
 import com.bitcamp.hgs.admin.domain.AdminLoginInfo;
+import com.bitcamp.hgs.admin.domain.BoardDetail;
 import com.bitcamp.hgs.admin.domain.BoardList;
 
 @Service
@@ -47,5 +48,15 @@ public class AdminService {
 		list = dao.selectEventBoardList(i);
 		
 		return list;
+	}
+
+	public BoardDetail getBoardDetail(int idx) {
+		BoardDetail bd = null;
+		
+		dao = template.getMapper(AdminDao.class);
+		
+		bd = dao.selectBoard(idx);
+		
+		return bd;
 	}
 }

@@ -73,5 +73,5 @@ html, body {
 			</form>
 		</div>
 	</div>
-</body>
+</body> 
 </html>

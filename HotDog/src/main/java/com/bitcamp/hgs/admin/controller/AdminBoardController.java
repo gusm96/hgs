@@ -8,39 +8,58 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.hgs.admin.domain.AdminBoardRequest;
+import com.bitcamp.hgs.admin.domain.BoardEditReq;
 import com.bitcamp.hgs.admin.service.AdminService;
 
 @Controller
 @RequestMapping("/admin/board")
 public class AdminBoardController {
-	
-	@Autowired AdminService service;
-	
+
+	@Autowired
+	AdminService service;
+
+	// 게시물 작성
 	@GetMapping
-	public String getEventBoard() {
+	public String getWriteBoard() {
 		return "adminBoard/board";
 	}
+
 	@PostMapping
-	public String postEventBoard(AdminBoardRequest boardReq, HttpSession session, Model model) {
+	public String postWriteBoard(AdminBoardRequest boardReq, HttpSession session, Model model) {
 		model.addAttribute("result", service.writeBoard(boardReq, session));
 		return "adminBoard/boardComplete";
 	}
+
+	// 게시글 리스트
 	@GetMapping("/{type}")
-	public String getEventList(@PathVariable("type") String type, Model model) {
-		if(type.equals("announcement")) {
+	public String getBoardList(@PathVariable("type") String type, Model model) {
+		if (type.equals("announcement")) {
 			model.addAttribute("board", service.getBoardList(1));
-		}else if(type.equals("event")) {
+		} else if (type.equals("event")) {
 			model.addAttribute("board", service.getBoardList(2));
 		}
 		return "adminBoard/list";
 	}
+
+	// 게시물 수정
 	@GetMapping("/detail/{idx}")
-	public String getBoardDetail(@PathVariable("idx") int idx, Model model) {
+	public String getBoardEdit(@PathVariable("idx") int idx, Model model) {
 		model.addAttribute("board", service.getBoardDetail(idx));
-		return "adminBoard/detail";
+		return "adminBoard/editBoard";
 	}
-	
+
+	// 게시물 수정하기
+	@PostMapping("/detail/{idx}")
+	public String putBoardEdit(@PathVariable("idx") int idx, BoardEditReq editReq, Model model) {
+		System.out.println(editReq);
+		model.addAttribute("result", service.editBoard(editReq));
+		return "adminBoard/editComplete";
+	}
+
 }

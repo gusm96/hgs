@@ -17,12 +17,10 @@ public class BoardReplyService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	// 후기 목록보기
-	public List<BoardReplys> getList(int BoardIdx) {
-		
-		
-		
-		return template.getMapper(BoardReplyDao.class).getList(BoardIdx);
+	// 댓글 목록보기
+	public List<BoardReplys> getList(int boardIdx) {
+
+		return template.getMapper(BoardReplyDao.class).getList(boardIdx);
 	}
 
 	// 댓글 등록
@@ -40,11 +38,11 @@ public class BoardReplyService {
 		return template.getMapper(BoardReplyDao.class).deleteReply(boardReplyIdx);
 	}
 
-	// 후기 수정
-	//public int updateReply(PlaceReplys reply) {
-
-		//dao = template.getMapper(PlaceReplyDao.class);
-
-		//return dao.updateReply(reply);
-	//}
+//	// 댓글 수정
+//	public int updateReply(BoardReplys reply) {
+//
+//		dao = template.getMapper(BoardReplyDao.class);
+//
+//		return dao.updateReply(reply);
+//	}
 }

@@ -45,12 +45,12 @@
 
 
 	<!-- 클래스 생성하면 경로 확인 후 수정 할 것 -->
-	<!-- 로그인 여부 확인을 위한 인터셉터 등록 -->
-	<interceptors>
 		<!-- <interceptor> -->
 		<!-- <mapping path="/login"/> -->
 		<!-- <beans:ref bean="LoginChangePwToHash"/> -->
 		<!-- </interceptor> -->
+	<!-- 로그인 여부 확인을 위한 인터셉터 등록 -->
+	<interceptors>
 		<interceptor>
 			<mapping path="/admin/**" />
 			<beans:ref bean="adminAuthCheckInterceptor" />

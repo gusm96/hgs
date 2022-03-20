@@ -4,23 +4,25 @@ import java.sql.Timestamp;
 
 public class Boards {
 	
-	private int boardIdx;
-	private int memberIdx = 1;
-	private String title;
-	private String content;
-	private Timestamp createDate;
-	private Timestamp editDate;
-	private Timestamp deleteDate;
-	private boolean exist;
-	private String fileName;
+	private int boardIdx;			// 게시물 번호
+	private int memberIdx;			// 일반 회원 번호
+	private String name;			// 일반 회원 이름
+	private String title;			// 게시물 제목
+	private String content;			// 게시물 내용
+	private Timestamp createDate;	// 게시물 등록 날짜
+	private Timestamp editDate;		// 게시물 수정 날짜
+	private Timestamp deleteDate;	// 게시물 삭제 날짜
+	private boolean exist;			// 게시물 존재 여부
+	private String fileName;		// 게시물 첨부 파일 이름
 	
 	public Boards(){}
 	
-	public Boards(int boardIdx, int memberIdx, String title, String content, Timestamp createDate, Timestamp editDate,
+	public Boards(int boardIdx, int memberIdx, String name, String title, String content, Timestamp createDate, Timestamp editDate,
 			Timestamp deleteDate, boolean exist, String fileName) {
 		
 		this.boardIdx = boardIdx;
 		this.memberIdx = memberIdx;
+		this.name = name;
 		this.title = title;
 		this.content = content;
 		this.createDate = createDate;
@@ -44,6 +46,16 @@ public class Boards {
 
 	public void setMemberIdx(int memberIdx) {
 		this.memberIdx = memberIdx;
+	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getTitle() {

@@ -21,12 +21,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByIdx"
 			resultType="com.bitcamp.hgs.board.domain.Boards">
 		SELECT
-	   		b.board_idx, 
+	   		b.board_idx,
+	   		m.name,
+	   		b.create_date,  
 	   		b.title,
        		b.content,
        		bf.file_name
-       FROM boards b left outer join board_files bf on (b.board_idx = bf.board_idx)
-	   WHERE b.board_idx=#{idx} 
+       FROM boards b LEFT OUTER JOIN board_files bf ON (b.board_idx = bf.board_idx) 
+       				 LEFT OUTER JOIN members m ON (b.member_idx = m.member_idx)
+	   WHERE b.board_idx=#{boardIdx} 
 	</select>
 	
 	<!-- 일반 게시물 등록 -->
@@ -41,14 +44,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 일반 게시물 삭제 -->
 	<delete id="deleteBoard">
-		DELETE FROM hgs.boards where board_idx=#{boardIdx}
+		DELETE FROM hgs.boards WHERE board_idx=#{boardIdx}
 	</delete>
 	
 	<!-- 일반 게시물 수정 -->
 	<update id="updateBoard">
 		UPDATE hgs.boards SET
 		title = #{title},
-		contact = #{content},
+		content = #{content}
 		where board_idx = #{boardIdx}
 	</update>
 	
@@ -58,4 +61,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	VALUES (#{boardIdx},#{fileName},#{size})
 	</insert>
 	
-	</mapper>
+	<!-- 파일 삭제 -->
+	<delete id="deleteFile">
+	DELETE FROM hgs.board_files 
+	WHERE board_idx = #{boardIdx}
+	</delete>
+	
+	<!-- 게시물에 연결된 좋아요 삭제 -->
+	<delete id="deleteLike">
+	DELETE FROM hgs.board_likes
+	WHERE board_idx = #{boardIdx}
+	</delete>
+	
+	<!-- 게시물에 연결된 좋아요 삭제 -->
+	<delete id="deleteReply">
+	DELETE FROM hgs.board_replys
+	WHERE board_idx = #{boardIdx}
+	</delete>
+</mapper>

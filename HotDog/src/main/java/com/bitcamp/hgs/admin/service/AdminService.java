@@ -12,6 +12,7 @@ import com.bitcamp.hgs.admin.dao.AdminDao;
 import com.bitcamp.hgs.admin.domain.AdminBoardRequest;
 import com.bitcamp.hgs.admin.domain.AdminLoginInfo;
 import com.bitcamp.hgs.admin.domain.BoardDetail;
+import com.bitcamp.hgs.admin.domain.BoardEditReq;
 import com.bitcamp.hgs.admin.domain.BoardList;
 
 @Service
@@ -58,5 +59,15 @@ public class AdminService {
 		bd = dao.selectBoard(idx);
 		
 		return bd;
+	}
+
+	public int editBoard(BoardEditReq editReq) {
+		int resultCnt= 0;
+		
+		dao = template.getMapper(AdminDao.class);
+		
+		resultCnt = dao.editBoard(editReq);
+		
+		return resultCnt;
 	}
 }

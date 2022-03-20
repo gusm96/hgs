@@ -1,10 +1,12 @@
 package com.bitcamp.hgs.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
 import com.bitcamp.hgs.board.domain.BoardFiles;
+import com.bitcamp.hgs.board.domain.BoardLikes;
 import com.bitcamp.hgs.board.domain.Boards;
 import com.bitcamp.hgs.board.domain.RegBoard;
 
@@ -32,4 +34,18 @@ public interface BoardDao {
 		
 		// 파일 첨부
 		public void insertFile(BoardFiles boardFiles);
+		
+		// 파일 삭제
+		public void deleteFile(int boardIdx);
+		
+		// 게시물에 연결된 좋아요 삭제
+		public void deleteLike(int boardIdx);
+		
+		
+		// 게시물에 연결된 댓글 삭제
+		public void deleteReply(int boardIdx);
+		
+		
+		
+		
 }

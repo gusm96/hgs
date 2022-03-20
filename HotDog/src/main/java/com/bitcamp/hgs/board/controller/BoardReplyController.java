@@ -17,7 +17,7 @@ public class BoardReplyController {
 	@Autowired
 	private BoardReplyService replyService;
 
-	// 후기 등록
+	// 댓글 등록
 	@PostMapping
 	public String registReply(BoardReplys reply) {
 
@@ -26,16 +26,13 @@ public class BoardReplyController {
 		return String.valueOf(reply.getBoardReplyIdx());
 	}
 
-	
-
-	// 후기 삭제
+	// 댓글 삭제
 	@DeleteMapping("/{boardReplyIdx}")
 	public String deleteReply(@PathVariable("boardReplyIdx") int boardReplyIdx) {
-		
+
 		replyService.deleteReply(boardReplyIdx);
-	
+
 		return String.valueOf(replyService.deleteReply(boardReplyIdx));
 	}
-	
 
 }

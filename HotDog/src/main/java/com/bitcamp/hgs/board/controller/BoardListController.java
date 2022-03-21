@@ -19,28 +19,31 @@ public class BoardListController {
 
 	@Autowired
 	private BoardListService listService;
-	
+
 	@Autowired
 	private AdminService adminService;
+
 	@GetMapping
 	public String getListPage(@RequestParam(value = "p", defaultValue = "1") int pageNum, Model model)
 			throws SQLException {
-		
+
 		// listView 이름으로 뷰에 전달
 		model.addAttribute("listView", listService.getPage(pageNum));
 		return "board/list";
 	}
-	
+
 	@GetMapping("/{type}")
-	public String getBoardListPage(@PathVariable("type") String type, Model model) {
+	public String getBoardListPage(@PathVariable("type") String type,@RequestParam(value = "p", defaultValue = "1") int currentPage, Model model) {
 		if (type.equals("announcement")) {
-			model.addAttribute("board", adminService.getBoardList(1));
+			model.addAttribute("type", 1);
+			model.addAttribute("board", adminService.getBoardList(1, currentPage));
 		} else if (type.equals("event")) {
-			model.addAttribute("board", adminService.getBoardList(2));
+			model.addAttribute("type", 2);
+			model.addAttribute("board", adminService.getBoardList(2, currentPage));
 		}
 		return "board/boardList";
 	}
-	
+
 	@GetMapping("/detail/{idx}")
 	public String getBoardDetaile(@PathVariable("idx") int idx, Model model) {
 		model.addAttribute("board", adminService.getBoardDetail(idx));

@@ -14,10 +14,12 @@ public interface AdminDao {
 
 	public int writeBoard(AdminBoardRequest boardReq);
 
-	public List<BoardList> selectEventBoardList(int i);
+	public List<BoardList> selectEventBoardList(int i, int index, int cOUNT_PER_PAGE);
 
 	public BoardDetail selectBoard(int idx);
 
 	public int editBoard(BoardEditReq editReq);
+
+	public int selectTotalCount(int i);
 	
 }

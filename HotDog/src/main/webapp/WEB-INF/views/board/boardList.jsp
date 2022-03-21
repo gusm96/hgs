@@ -7,7 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 목록</title>
+<c:if test="${type == 1 }">
+				<title>공지 게시글</title>
+			</c:if>
+			<c:if test="${type == 2 }">
+				<title>이벤트 게시글</title>
+			</c:if>
 <%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
 <style type="text/css">
 html, body {
@@ -26,7 +31,12 @@ html, body {
 	<div id="container" class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8" style="margin-top: 50px;">
-					<h3>게시글 목록</h3>
+					<c:if test="${type == 1 }">
+				<h3>공지 게시글</h3>
+			</c:if>
+			<c:if test="${type == 2 }">
+				<h3>이벤트 게시글</h3>
+			</c:if>
 			<table class="table">
 				<thead>
 					<tr>

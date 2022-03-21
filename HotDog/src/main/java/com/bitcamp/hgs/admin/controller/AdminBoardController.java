@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bitcamp.hgs.admin.domain.AdminBoardRequest;
@@ -33,16 +34,20 @@ public class AdminBoardController {
 	@PostMapping
 	public String postWriteBoard(AdminBoardRequest boardReq, HttpSession session, Model model) {
 		model.addAttribute("result", service.writeBoard(boardReq, session));
+		model.addAttribute("type", boardReq.getAdminBoardListIdx());
 		return "adminBoard/boardComplete";
 	}
 
 	// 게시글 리스트
 	@GetMapping("/{type}")
-	public String getBoardList(@PathVariable("type") String type, Model model) {
+	public String getBoardList(@PathVariable("type") String type,
+			@RequestParam(value = "p", defaultValue = "1") int currentPage, Model model) {
 		if (type.equals("announcement")) {
-			model.addAttribute("board", service.getBoardList(1));
+			model.addAttribute("type", 1);
+			model.addAttribute("board", service.getBoardList(1, currentPage));
 		} else if (type.equals("event")) {
-			model.addAttribute("board", service.getBoardList(2));
+			model.addAttribute("type", 2);
+			model.addAttribute("board", service.getBoardList(2, currentPage));
 		}
 		return "adminBoard/list";
 	}

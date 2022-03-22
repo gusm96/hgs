@@ -25,7 +25,7 @@ public class AdminService {
 	private SqlSessionTemplate template;
 
 	// 페이지 당 표현할 추천 게시물 개수
-	private final int COUNT_PER_PAGE = 20;
+	private final int COUNT_PER_PAGE = 15;
 
 	// 페이징 번호 노출 개수
 	private final int COUNT_PER_PAGING_NUM = 5;

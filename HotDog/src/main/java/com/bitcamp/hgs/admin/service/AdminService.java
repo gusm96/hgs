@@ -24,7 +24,7 @@ public class AdminService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	// 페이지 당 표현할 추천 게시물 개수
+	// 페이지 당 표현할 게시물 개수
 	private final int COUNT_PER_PAGE = 15;
 
 	// 페이징 번호 노출 개수
@@ -54,11 +54,8 @@ public class AdminService {
 		dao = template.getMapper(AdminDao.class);
 
 		int totalCount = dao.selectTotalCount(i);
-		System.out.println("totalCount: " + totalCount);
 		int index = (currentPage - 1) * COUNT_PER_PAGE;
-		System.out.println("i: " + i);
 		list = dao.selectEventBoardList(i, index, COUNT_PER_PAGE);
-		System.out.println("list : " + list);
 		return new AdminBoardListView(currentPage, COUNT_PER_PAGE, COUNT_PER_PAGING_NUM, list, totalCount);
 	}
 
@@ -80,5 +77,19 @@ public class AdminService {
 		resultCnt = dao.editBoard(editReq);
 
 		return resultCnt;
+	}
+
+	public String deleteBoard(int idx) {
+		String page="";
+
+		dao = template.getMapper(AdminDao.class);
+		
+		if(dao.deleteBoard(idx) > 0) {
+			page="redirect:/admin/board";
+		}else {
+			// 실패시 에러 페이지 이동
+		}
+		
+		return page;
 	}
 }

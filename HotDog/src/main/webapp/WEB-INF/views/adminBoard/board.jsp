@@ -25,6 +25,8 @@
 			placeholder : "게시글을 작성하세요.",
 			tabsize : 2,
 			height : 500,
+			lang: "Ko-KR",
+			
 		});
 	});
 </script>

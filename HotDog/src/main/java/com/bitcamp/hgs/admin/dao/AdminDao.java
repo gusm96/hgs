@@ -9,7 +9,7 @@ import com.bitcamp.hgs.admin.domain.BoardEditReq;
 import com.bitcamp.hgs.admin.domain.BoardList;
 
 public interface AdminDao {
-	
+
 	public Admin checkAdminIdPw(String email);
 
 	public int writeBoard(AdminBoardRequest boardReq);
@@ -21,5 +21,7 @@ public interface AdminDao {
 	public int editBoard(BoardEditReq editReq);
 
 	public int selectTotalCount(int i);
-	
+
+	public int deleteBoard(int idx);
+
 }

@@ -32,5 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <update id="editBoard" parameterType="com.bitcamp.hgs.admin.domain.BoardEditReq">
 	update admin_boards set admin_board_list_idx=#{adminBoardListIdx}, title=#{title}, content=#{content} where admin_board_idx=#{adminBoardIdx}
 </update>
-
+<!-- Board Delete -->
+<delete id="deleteBoard" parameterType="int">
+	delete from admin_boards where admin_board_idx = #{idx}
+</delete>
 </mapper>

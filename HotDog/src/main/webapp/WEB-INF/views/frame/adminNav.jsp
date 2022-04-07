@@ -21,10 +21,6 @@
 		<li class="nav-item"><a
 			href="${pageContext.request.contextPath}/admin/board/event"
 			class="nav-link text-white"> 이벤트 게시글 목록 </a></li>
-		<li class="nav-item"><a href="#" class="nav-link text-white">
-				Products </a></li>
-		<li class="nav-item"><a href="#" class="nav-link text-white">
-				Customers </a></li>
 	</ul>
 	<hr />
 	<div class="dropdown" style="text-align: right;">

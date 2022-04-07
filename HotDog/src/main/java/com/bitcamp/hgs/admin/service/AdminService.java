@@ -46,7 +46,6 @@ public class AdminService {
 	}
 
 	// 게시물 리스트
-
 	public AdminBoardListView getBoardList(int i, int currentPage) {
 
 		List<BoardList> list = null;
@@ -58,7 +57,8 @@ public class AdminService {
 		list = dao.selectEventBoardList(i, index, COUNT_PER_PAGE);
 		return new AdminBoardListView(currentPage, COUNT_PER_PAGE, COUNT_PER_PAGING_NUM, list, totalCount);
 	}
-
+	
+	// 게시글 상세보기
 	public BoardDetail getBoardDetail(int idx) {
 		BoardDetail bd = null;
 
@@ -68,7 +68,8 @@ public class AdminService {
 
 		return bd;
 	}
-
+	
+	// 게시글 수정
 	public int editBoard(BoardEditReq editReq) {
 		int resultCnt = 0;
 
@@ -78,7 +79,8 @@ public class AdminService {
 
 		return resultCnt;
 	}
-
+	
+	// 게시글 삭제 
 	public String deleteBoard(int idx) {
 		String page="";
 

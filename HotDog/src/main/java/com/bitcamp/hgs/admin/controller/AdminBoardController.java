@@ -53,7 +53,7 @@ public class AdminBoardController {
 		return "adminBoard/list";
 	}
 
-	// 게시물 수정
+	// 게시물 상세보기
 	@GetMapping("/detail/{idx}")
 	public String getBoardEdit(@PathVariable("idx") int idx, Model model) {
 		model.addAttribute("board", service.getBoardDetail(idx));
@@ -63,11 +63,11 @@ public class AdminBoardController {
 	// 게시물 수정하기
 	@PostMapping("/detail/{idx}")
 	public String putBoardEdit(@PathVariable("idx") int idx, BoardEditReq editReq, Model model) {
-		System.out.println(editReq);
-		model.addAttribute("result", service.editBoard(editReq));
-		return "adminBoard/editComplete";
+		 service.editBoard(editReq);
+		return "redirect:/admin/board/detail/"+idx;
 	}
 	
+	// 게시물 삭제
 	@GetMapping("/delete/{idx}")
 	public String deleteBoard(@PathVariable("idx") int idx) {
 		return service.deleteBoard(idx);

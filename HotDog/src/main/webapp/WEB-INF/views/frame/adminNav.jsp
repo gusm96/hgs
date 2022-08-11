@@ -9,7 +9,7 @@
 <div id="nav_bar"
 	class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
 	style="width: 280px">
-		<span class="fs-4">관리자 메뉴</span>
+	<span class="fs-4" style="text-align: center;">관리자 메뉴</span>
 	<hr />
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li class="nav-item"><a
@@ -24,6 +24,7 @@
 	</ul>
 	<hr />
 	<div class="dropdown" style="text-align: right;">
-		<a href="${pageContext.request.contextPath}/logout/admin" style="color: white; text-decoration: none; ">로그아웃</a>
+		<a href="${pageContext.request.contextPath}/logout/admin"
+			style="color: white; text-decoration: none;">로그아웃</a>
 	</div>
 </div>

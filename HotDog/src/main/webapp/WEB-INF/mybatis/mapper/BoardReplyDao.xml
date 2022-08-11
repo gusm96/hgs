@@ -7,35 +7,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.bitcamp.hgs.board.dao.BoardReplyDao">
 
 	<select id="getList"
-			resultType="com.bitcamp.hgs.board.domain.BoardReplys">
-	SELECT br.board_reply_idx,
-		   br.board_idx,
-		   br.member_idx,
-		   m.name,
-		   br.content,
-		   br.create_date
-	FROM hgs.board_replys br LEFT OUTER JOIN members m ON(br.member_idx = m.member_idx)
-	WHERE board_idx=${boardIdx}
+		resultType="com.bitcamp.hgs.board.domain.BoardReplys">
+		SELECT br.board_reply_idx,
+		br.board_idx,
+		br.member_idx,
+		m.name,
+		br.content,
+		br.create_date
+		FROM hgs.board_replys br LEFT OUTER JOIN members m ON(br.member_idx =
+		m.member_idx)
+		WHERE board_idx=${boardIdx}
 	</select>
-	
-	
+
+
 	<insert id="registReply"
-			parameterType="com.bitcamp.hgs.board.domain.BoardReplys"
-			useGeneratedKeys="true"
-			keyProperty="boardReplyIdx">
-	INSERT INTO board_replys (board_idx, member_idx, content) 
-	VALUES (#{boardIdx}, #{memberIdx}, #{content})
+		parameterType="com.bitcamp.hgs.board.domain.BoardReplys"
+		useGeneratedKeys="true" keyProperty="boardReplyIdx">
+		INSERT INTO board_replys (board_idx, member_idx, content)
+		VALUES (#{boardIdx}, #{memberIdx}, #{content})
 	</insert>
-	
-	
-	
+
+
+
 	<delete id="deleteReply">
-		DELETE FROM hgs.board_replys WHERE board_reply_idx=#{boardReplyIdx}
+		DELETE FROM hgs.board_replys WHERE
+		board_reply_idx=#{boardReplyIdx}
 	</delete>
-	
+
 	<update id="updateReply">
-		UPDATE board_replys SET content=#{content}, editdate = sysdate WHERE board_reply_idx = #{boardReplyIdx}
+		UPDATE board_replys SET content=#{content}, editdate
+		= sysdate WHERE board_reply_idx = #{boardReplyIdx}
 	</update>
-	
-	
+
+
 </mapper>

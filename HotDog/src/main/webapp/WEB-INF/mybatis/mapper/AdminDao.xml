@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
@@ -6,34 +7,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.bitcamp.hgs.admin.dao.AdminDao">
 
-<select id="checkAdminIdPw" resultType="com.bitcamp.hgs.admin.domain.Admin">
-	select * from admins where id=#{id}
-</select>
+	<select id="checkAdminIdPw"
+		resultType="com.bitcamp.hgs.admin.domain.Admin">
+		select * from admins where id=#{id}
+	</select>
 
-<insert id="writeBoard" parameterType="com.bitcamp.hgs.admin.domain.AdminBoardRequest" useGeneratedKeys="true" keyProperty="adminBoardIdx">
-	insert into admin_boards (admin_board_list_idx, admin_idx, title, content) values(#{adminBoardListIdx}, #{adminIdx}, #{title}, #{content})
-</insert>
+	<insert id="writeBoard"
+		parameterType="com.bitcamp.hgs.admin.domain.AdminBoardRequest"
+		useGeneratedKeys="true" keyProperty="adminBoardIdx">
+		insert into admin_boards (admin_board_list_idx, admin_idx, title, content)
+		values(#{adminBoardListIdx}, #{adminIdx}, #{title}, #{content})
+	</insert>
 
-<!-- BoardList -->
-<select id="selectEventBoardList" resultType="com.bitcamp.hgs.admin.domain.BoardList">
-	select * from admin_boards  where admin_board_list_idx = #{param1} order by admin_board_idx desc limit #{param2}, #{param3}
-</select>
+	<!-- BoardList -->
+	<select id="selectEventBoardList"
+		resultType="com.bitcamp.hgs.admin.domain.BoardList">
+		select * from admin_boards where admin_board_list_idx = #{param1} order by
+		admin_board_idx desc limit #{param2}, #{param3}
+	</select>
 
-<!-- BoardList Total Count -->
-<select id="selectTotalCount" resultType="int">
-	select count(*) from admin_boards where admin_board_list_idx=#{i}
-</select>
-<!-- Board Detail -->
-<select id="selectBoard" resultType="com.bitcamp.hgs.admin.domain.BoardDetail">
-	select * from admin_boards where admin_board_idx=#{idx}
-</select>
+	<!-- BoardList Total Count -->
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from admin_boards where admin_board_list_idx=#{i}
+	</select>
+	<!-- Board Detail -->
+	<select id="selectBoard"
+		resultType="com.bitcamp.hgs.admin.domain.BoardDetail">
+		select * from admin_boards where admin_board_idx=#{idx}
+	</select>
 
-<!-- Board Update -->
-<update id="editBoard" parameterType="com.bitcamp.hgs.admin.domain.BoardEditReq">
-	update admin_boards set admin_board_list_idx=#{adminBoardListIdx}, title=#{title}, content=#{content} where admin_board_idx=#{adminBoardIdx}
-</update>
-<!-- Board Delete -->
-<delete id="deleteBoard" parameterType="int">
-	delete from admin_boards where admin_board_idx = #{idx}
-</delete>
+	<!-- Board Update -->
+	<update id="editBoard"
+		parameterType="com.bitcamp.hgs.admin.domain.BoardEditReq">
+		update admin_boards set admin_board_list_idx=#{adminBoardListIdx},
+		title=#{title}, content=#{content} where
+		admin_board_idx=#{adminBoardIdx}
+	</update>
+	<!-- Board Delete -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from admin_boards where admin_board_idx = #{idx}
+	</delete>
 </mapper>

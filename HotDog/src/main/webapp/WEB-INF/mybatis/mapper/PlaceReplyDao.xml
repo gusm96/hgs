@@ -5,37 +5,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <mapper namespace="com.bitcamp.hgs.place.dao.PlaceReplyDao">
-	
+
 	<select id="getList"
-			resultType="com.bitcamp.hgs.place.domain.PlaceReplys">
-	SELECT pr.place_reply_idx,
-		   pr.place_idx,
-		   pr.member_idx,
-		   m.name,
-		   pr.content,
-		   pr.create_date
-	FROM hgs.place_replys pr LEFT OUTER JOIN members m ON(pr.member_idx = m.member_idx) 
-	WHERE place_idx=${placeIdx}
+		resultType="com.bitcamp.hgs.place.domain.PlaceReplys">
+		SELECT pr.place_reply_idx,
+		pr.place_idx,
+		pr.member_idx,
+		m.name,
+		pr.content,
+		pr.create_date
+		FROM hgs.place_replys pr LEFT OUTER JOIN members m ON(pr.member_idx =
+		m.member_idx)
+		WHERE place_idx=${placeIdx}
 	</select>
-	
-	
+
+
 	<insert id="registReply"
-			parameterType="com.bitcamp.hgs.place.domain.PlaceReplys"
-			useGeneratedKeys="true"
-			keyProperty="placeReplyIdx">
-	INSERT INTO place_replys (place_idx, member_idx, star, content) 
-	VALUES (#{placeIdx}, #{memberIdx}, #{star}, #{content})
+		parameterType="com.bitcamp.hgs.place.domain.PlaceReplys"
+		useGeneratedKeys="true" keyProperty="placeReplyIdx">
+		INSERT INTO place_replys (place_idx, member_idx, star, content)
+		VALUES (#{placeIdx}, #{memberIdx}, #{star}, #{content})
 	</insert>
-	
-	
-	
+
+
+
 	<delete id="deleteReply">
-		DELETE FROM hgs.place_replys WHERE place_reply_idx=#{placeReplyIdx}
+		DELETE FROM hgs.place_replys WHERE
+		place_reply_idx=#{placeReplyIdx}
 	</delete>
-	
+
 	<update id="updateReply">
-		UPDATE place_replys SET content=#{content}, editdate = sysdate WHERE place_reply_idx = #{placeReplyIdx}
+		UPDATE place_replys SET content=#{content}, editdate
+		= sysdate WHERE place_reply_idx = #{placeReplyIdx}
 	</update>
-	
-	
+
+
 </mapper>

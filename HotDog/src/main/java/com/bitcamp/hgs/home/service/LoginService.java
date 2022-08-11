@@ -72,7 +72,6 @@ public class LoginService {
 		int resultCnt = 0;
 		Admin admin = new Admin();
 		admin = template.getMapper(AdminDao.class).checkAdminIdPw(loginReq.getId());
-		System.out.println(admin);
 
 		if (loginReq.getPassword().equals(admin.getPassword())) {
 			resultCnt = 1;

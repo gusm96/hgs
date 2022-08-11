@@ -44,7 +44,15 @@ public class AdminService {
 
 		return resultCnt;
 	}
-
+	// 게시물 사진 저장 ( 비동기 통신 )
+	// 사진을 DB에 저장 후 사진 경로를 반환
+	public String uploadImageFile() {
+		String file_url = "";
+		
+		
+		return file_url;
+	}
+	
 	// 게시물 리스트
 	public AdminBoardListView getBoardList(int i, int currentPage) {
 
@@ -57,7 +65,7 @@ public class AdminService {
 		list = dao.selectEventBoardList(i, index, COUNT_PER_PAGE);
 		return new AdminBoardListView(currentPage, COUNT_PER_PAGE, COUNT_PER_PAGING_NUM, list, totalCount);
 	}
-	
+
 	// 게시글 상세보기
 	public BoardDetail getBoardDetail(int idx) {
 		BoardDetail bd = null;
@@ -68,7 +76,7 @@ public class AdminService {
 
 		return bd;
 	}
-	
+
 	// 게시글 수정
 	public int editBoard(BoardEditReq editReq) {
 		int resultCnt = 0;
@@ -79,19 +87,23 @@ public class AdminService {
 
 		return resultCnt;
 	}
-	
-	// 게시글 삭제 
+
+	// 게시글 삭제
 	public String deleteBoard(int idx) {
-		String page="";
+		String page = "";
 
 		dao = template.getMapper(AdminDao.class);
-		
-		if(dao.deleteBoard(idx) > 0) {
-			page="redirect:/admin/board";
-		}else {
+		BoardDetail board = dao.selectBoard(idx);
+		if (dao.deleteBoard(idx) > 0) {
+			if (board.getAdminBoardListIdx() == 1) {
+				page = "redirect:/admin/board/announcement";
+			} else {
+				page = "redirect:/admin/board/event";
+			}
+		} else {
 			// 실패시 에러 페이지 이동
 		}
-		
+
 		return page;
 	}
 }

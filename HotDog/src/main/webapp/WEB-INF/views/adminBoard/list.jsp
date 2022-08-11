@@ -58,7 +58,8 @@ html, body {
 			</table>
 			<!-- 페이징 넘버 영역 -->
 			<div class="row justify-content-md-center mt-4 bottom">
-				<div class="btn-toolbar" role="toolbar" style="display: flex; align-content: center; justify-content: center;">
+				<div class="btn-toolbar" role="toolbar"
+					style="display: flex; align-content: center; justify-content: center;">
 					<div class="btn-group mr-2" role="group">
 						<c:if test="${board.pagination.preNum>0}">
 							<a href="announcement?p=${board.pagination.preNum}"

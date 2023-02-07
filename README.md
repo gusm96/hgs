@@ -2,7 +2,7 @@
 
 ------
 
-![hgs.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2cdbf303-2d07-48eb-8440-3f446aa4fc46/hgs.jpg)
+<img src="C:\Users\gusm9\Documents\workspace\hgs\img\hgs.jpg" style="zoom: 50%; " />
 
 ## 🐶About Project
 

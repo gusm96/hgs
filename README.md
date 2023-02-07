@@ -2,7 +2,7 @@
 
 ------
 
-<img src="C:\Users\gusm9\Documents\workspace\hgs\img\hgs.jpg" style="zoom: 50%; " />
+<img src="https://github.com/gusm96/hgs/blob/main/img/hgs.jpg" style="zoom: 50%; " />
 
 ## 🐶About Project
 

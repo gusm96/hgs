@@ -26,8 +26,30 @@ pageEncoding="UTF-8"%>
           tabsize: 2,
           height: 500,
           lang: "Ko-KR",
+         /*  callbacks: {
+            onImageUpload: function (files) {
+              // 파일 다중 업로드를 위해 반복문 사용
+              for (var i = files.length - 1; i >= 0; i--) {}
+            },
+          }, */
         });
       });
+      /* function uploadSummernoteImageFile(file, el) {
+        data = new FormData();
+        data.append("file", file);
+        $.ajax({
+          data: data,
+          type: "POST",
+          url: "uploadSummernoteImageFile",
+          contentType: false,
+          enctype: "multipart/form-data",
+          processData: false,
+          success: function (data) {
+            $(el).summernote("editor.insertImage", data.url);
+          },
+        });
+      } */
+      
     </script>
 
     <style type="text/css">
@@ -55,7 +77,7 @@ pageEncoding="UTF-8"%>
         <form id="board-form" method="post">
           <div class="row">
             <div class="col-md-1" style="text-align: center; font-weight: bold">
-              	제목
+              제목
             </div>
             <div class="col-md-8" style="padding: 0">
               <input
@@ -66,19 +88,24 @@ pageEncoding="UTF-8"%>
                 required
               />
             </div>
-					<div class="col-md-2" style="padding: 0">
-						<select name="adminBoardListIdx" id="adminBoardListIdx"
-							class="form-select" aria-label="Default select example" required>
-							<option selected>게시글 유행을 선택하세요.</option>
-							<option value="1">공지사항</option>
-							<option value="2">이벤트</option>
-						</select>
-					</div>
-				</div>
+            <div class="col-md-2" style="padding: 0">
+              <select
+                name="adminBoardListIdx"
+                id="adminBoardListIdx"
+                class="form-select"
+                aria-label="Default select example"
+                required
+              >
+                <option selected>게시글 유행을 선택하세요.</option>
+                <option value="1">공지사항</option>
+                <option value="2">이벤트</option>
+              </select>
+            </div>
+          </div>
           <textarea id="summernote" name="content" required></textarea>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button class="btn btn-primary me-md-2" type="submit">
-              	작성하기
+              작성하기
             </button>
             <button class="btn btn-primary" type="reset">리셋</button>
           </div>

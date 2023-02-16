@@ -33,15 +33,10 @@ public class AdminService {
 	// 게시물 작성
 	public int writeBoard(AdminBoardRequest boardReq, HttpSession session) {
 		int resultCnt = 0;
-		System.out.println(boardReq);
 		AdminLoginInfo loginInfo = (AdminLoginInfo) session.getAttribute("adminLogger");
-		System.out.println(loginInfo);
 		boardReq.setAdminIdx(loginInfo.getAdminIdx());
-
 		dao = template.getMapper(AdminDao.class);
-
 		resultCnt = dao.writeBoard(boardReq);
-
 		return resultCnt;
 	}
 	// 게시물 사진 저장 ( 비동기 통신 )
@@ -55,11 +50,8 @@ public class AdminService {
 	
 	// 게시물 리스트
 	public AdminBoardListView getBoardList(int i, int currentPage) {
-
 		List<BoardList> list = null;
-
 		dao = template.getMapper(AdminDao.class);
-
 		int totalCount = dao.selectTotalCount(i);
 		int index = (currentPage - 1) * COUNT_PER_PAGE;
 		list = dao.selectEventBoardList(i, index, COUNT_PER_PAGE);
@@ -69,29 +61,22 @@ public class AdminService {
 	// 게시글 상세보기
 	public BoardDetail getBoardDetail(int idx) {
 		BoardDetail bd = null;
-
 		dao = template.getMapper(AdminDao.class);
-
 		bd = dao.selectBoard(idx);
-
 		return bd;
 	}
 
 	// 게시글 수정
 	public int editBoard(BoardEditReq editReq) {
 		int resultCnt = 0;
-
 		dao = template.getMapper(AdminDao.class);
-
 		resultCnt = dao.editBoard(editReq);
-
 		return resultCnt;
 	}
 
 	// 게시글 삭제
 	public String deleteBoard(int idx) {
 		String page = "";
-
 		dao = template.getMapper(AdminDao.class);
 		BoardDetail board = dao.selectBoard(idx);
 		if (dao.deleteBoard(idx) > 0) {
@@ -103,7 +88,6 @@ public class AdminService {
 		} else {
 			// 실패시 에러 페이지 이동
 		}
-
 		return page;
 	}
 }
